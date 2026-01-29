@@ -1,0 +1,48 @@
+using System.ComponentModel;
+using Terraria.ModLoader.Config;
+
+namespace V2;
+
+public class V2ServerConfig : ModConfig
+{
+	public override ConfigScope Mode => (ConfigScope)0;
+
+	[Header("$Mods.V2.Configs.Server.Insight.Header")]
+	[LabelKey("$Mods.V2.Configs.Server.Insight.DebugChatMessages.Label")]
+	[TooltipKey("$Mods.V2.Configs.Server.Insight.DebugChatMessages.Tooltip")]
+	[DefaultValue(false)]
+	public bool DebugChatMessages { get; set; }
+
+	[Header("$Mods.V2.Configs.Server.Personalization.Header")]
+	[LabelKey("$Mods.V2.Configs.Server.Personalization.RandomGulpsAgainstPlayers.Label")]
+	[TooltipKey("$Mods.V2.Configs.Server.Personalization.RandomGulpsAgainstPlayers.Tooltip")]
+	[DefaultValue(false)]
+	public bool RandomGulpsAgainstPlayers { get; set; }
+
+	[LabelKey("$Mods.V2.Configs.Server.Personalization.GenderBlacklist.Label")]
+	[TooltipKey("$Mods.V2.Configs.Server.Personalization.GenderBlacklist.Tooltip")]
+	[OptionStrings(new string[] { "Default (No Blacklist)", "No Female", "No Male", "No M or F...but why?" })]
+	[DefaultValue("Default (No Blacklist)")]
+	public string GenderBlacklist { get; set; }
+
+	[Header("$Mods.V2.Configs.Server.JustForFun.Header")]
+	[LabelKey("$Mods.V2.Configs.Server.JustForFun.DefenseInDigestionCalcs.Label")]
+	[TooltipKey("$Mods.V2.Configs.Server.JustForFun.DefenseInDigestionCalcs.Tooltip")]
+	[DefaultValue(true)]
+	public bool DefenseInDigestionCalcs { get; set; }
+
+	[LabelKey("$Mods.V2.Configs.Server.JustForFun.EasilyEdibleEmpress.Label")]
+	[TooltipKey("$Mods.V2.Configs.Server.JustForFun.EasilyEdibleEmpress.Tooltip")]
+	[DefaultValue(false)]
+	public bool EasilyEdibleEmpress { get; set; }
+
+	[LabelKey("$Mods.V2.Configs.Server.JustForFun.PermaChurnableEquipment.Label")]
+	[TooltipKey("$Mods.V2.Configs.Server.JustForFun.PermaChurnableEquipment.Tooltip")]
+	[DefaultValue(false)]
+	public bool PermaChurnableEquipment { get; set; }
+
+	[LabelKey("$Mods.V2.Configs.Server.JustForFun.FatAssesBreakTiles.Label")]
+	[TooltipKey("$Mods.V2.Configs.Server.JustForFun.FatAssesBreakTiles.Tooltip")]
+	[DefaultValue(true)]
+	public bool FatAssesBreakTiles { get; set; }
+}

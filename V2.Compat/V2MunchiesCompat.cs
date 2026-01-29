@@ -1,0 +1,52 @@
+using System;
+using Terraria;
+using Terraria.ModLoader;
+using V2.Items.Voraria.Consumables.PermanentUpgrades;
+using V2.Items.Voraria.Consumables.PermanentUpgrades.Jujus;
+using V2.PlayerHandling;
+
+namespace V2.Compat;
+
+[JITWhenModsEnabled(new string[] { "munchies" })]
+public class V2MunchiesCompat : V2CompatModule
+{
+	private void AddSingleConsumablePlayer<TItem>(string upgradeName = null) where TItem : class
+	{
+		compatMod.Call(new object[8]
+		{
+			"AddSingleConsumable",
+			V2.Instance,
+			"1.4.2",
+			ModContent.GetInstance<TItem>(),
+			"player",
+			hasMyPlayerPermanentUpgradeFunc(upgradeName ?? typeof(TItem).Name),
+			null,
+			null
+		});
+	}
+
+	public V2MunchiesCompat(Mod compatMod)
+		: base(compatMod)
+	{
+	}
+
+	public override void ApplyCompatibility()
+	{
+		AddSingleConsumablePlayer<PureSwallowBoost1>("PureSwallow1");
+		AddSingleConsumablePlayer<BiomeJujuForest>();
+		AddSingleConsumablePlayer<BiomeJujuDesert>();
+		AddSingleConsumablePlayer<BiomeJujuSnow>();
+		AddSingleConsumablePlayer<BiomeJujuJungle>();
+		AddSingleConsumablePlayer<BiomeJujuSky>();
+		AddSingleConsumablePlayer<ShimmerJuju>();
+	}
+
+	public override void UnapplyCompatibility()
+	{
+	}
+
+	private static Func<bool> hasMyPlayerPermanentUpgradeFunc(string upgrade)
+	{
+		return () => Main.player[Main.myPlayer].AsPred().PermanentUpgradesGained.TryGetValue(upgrade, out var value) && value;
+	}
+}
