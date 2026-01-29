@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>V2</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>14.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="BetterDialogue" />
+    <Reference Include="FNA" />
+    <Reference Include="tModLoader" />
+    <Reference Include="MonoMod.RuntimeDetour" />
+    <Reference Include="TerrariaHooks" />
+    <Reference Include="ReLogic" />
+    <Reference Include="WeaponDisplay" />
+    <Reference Include="log4net" />
+    <Reference Include="Humanizer" />
+  </ItemGroup>
+</Project>
