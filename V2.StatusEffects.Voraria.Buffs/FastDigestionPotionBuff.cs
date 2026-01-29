@@ -1,0 +1,35 @@
+using Terraria;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using V2.Items.Voraria.Consumables.Potions;
+using V2.PlayerHandling;
+
+namespace V2.StatusEffects.Voraria.Buffs;
+
+public class FastDigestionPotionBuff : ModBuff
+{
+	public override LocalizedText DisplayName => Language.GetText("Mods.V2.StatusEffects.Voraria.Buffs.FastDigestionPotionBuff.Name");
+
+	public override LocalizedText Description => Language.GetText("Mods.V2.StatusEffects.Voraria.Buffs.FastDigestionPotionBuff.Description");
+
+	public override bool RightClick(int buffIndex)
+	{
+		return false;
+	}
+
+	public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare)
+	{
+		rare = 2;
+		tip = Language.GetTextValueWith("Mods.V2.StatusEffects.Voraria.Buffs.FastDigestionPotionBuff.Description", (object)new
+		{
+			FastDigestionPotionACIBonus = FastDigestionPotion.ACIBonus,
+			FastDigestionPotionABSBonus = FastDigestionPotion.ABSBonus
+		});
+	}
+
+	public override void Update(Player player, ref int buffIndex)
+	{
+		player.AsPred().ACI.Extra += FastDigestionPotion.ACIBonus;
+		player.AsPred().ABS.Extra += FastDigestionPotion.ABSBonus;
+	}
+}
